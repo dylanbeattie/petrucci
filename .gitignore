@@ -102,3 +102,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+src/interpreter.js
+
+src/parser.js
+
+src/syntax.js
