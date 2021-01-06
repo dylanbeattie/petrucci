@@ -1,6 +1,6 @@
 {
   "name": "petrucci",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "A TypeScript interpreter for @RockstarLang",
   "main": "interpreter.js",
   "dependencies": {
