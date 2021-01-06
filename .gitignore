@@ -108,3 +108,9 @@ src/interpreter.js
 src/parser.js
 
 src/syntax.js
+
+parser.js
+
+interpreter.js
+
+syntax.js
