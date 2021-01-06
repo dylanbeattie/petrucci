@@ -1,0 +1,25 @@
+{ const Syntax = require('./syntax.js'); }
+
+program = head:statement EOL tail:program { return [ head ].concat(tail) }
+        / item:statement { return [ item ] }
+
+statement = output / return
+
+output = 'output' _ node:expression { return new Syntax.OutputNode(node) }
+return = 'return' _ node:expression { return new Syntax.ReturnNode(node) }
+
+expression = sum
+
+sum = lhs:product _ "+" _ rhs:sum { return new Syntax.AdditionNode(lhs, rhs) }
+    / product
+
+product = lhs:primary _ "*" _ rhs:product { return new  Syntax.MultiplicationNode(lhs, rhs) }
+        / primary
+
+primary = number
+        / "(" expr:expression ")" { return expr; }
+
+number = digits:$[0-9]+ { return new  Syntax.NumberNode(parseInt(digits)) }
+
+_ = [ \t]*
+EOL = '\r'? '\n'

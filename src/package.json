@@ -1,0 +1,20 @@
+{
+  "name": "petrucci",
+  "version": "0.0.1",
+  "description": "A TypeScript interpreter for @RockstarLang",
+  "main": "interpreter.js",
+  "dependencies": {
+    "pegjs": "^0.10.0",
+    "ts-pegjs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.20"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc syntax.ts & pegjs parser.peg & tsc interpreter.ts",
+    "start": "npm run build & node interpreter.js"
+  },
+  "author": "Dylan Beattie",
+  "license": "MIT License"
+}
