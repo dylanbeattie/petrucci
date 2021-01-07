@@ -1,0 +1,6 @@
+output 1
+output (4+5)*(6+7)
+output 12345678
+output 98765
+return 0
+output 9

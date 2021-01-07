@@ -1,15 +1,19 @@
+import * as fs from 'fs';
+
 import * as Parser from "./parser.js";
 import * as Syntax from './syntax';
 
-let program = `output 1
-output (4+5)*(6+7)
-return 0
-output 9`
+console.log(process.argv[2]);
+fs.readFile(process.argv[2], "utf8", runProgram);
 
-let ast = Parser.parse(program);
-ast.forEach(node => {
-    var result = node.evaluate();
-    switch(result.action) { 
-        case Syntax.Action.Return: process.exit(result.value);
-    }
-});
+function runProgram(err, program) {
+    if (err) throw (err);
+    let ast = Parser.parse(program);
+    ast.forEach(node => {
+        var result = node.evaluate();
+        switch (result.action) {
+            case Syntax.Action.Return: process.exit(result.value);
+        }
+    })
+};
+
