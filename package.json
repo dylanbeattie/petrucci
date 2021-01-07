@@ -13,7 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc syntax.ts & pegjs parser.peg & tsc interpreter.ts",
-    "start": "npm run build & node interpreter.js"
+    "start": "npm run build & node interpreter.js program.rock"
   },
   "author": "Dylan Beattie",
   "license": "MIT License"
