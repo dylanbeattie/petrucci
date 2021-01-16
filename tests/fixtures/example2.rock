@@ -1,0 +1,5 @@
+output 1 [expect:1]
+output 2+3 [expect:5]
+output 4+5+6 [expect:15]
+return 7
+output 8+9

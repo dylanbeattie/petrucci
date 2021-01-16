@@ -1,6 +1,6 @@
 { const Syntax = require('./syntax.js'); }
 
-program = head:statement EOL tail:program { return [ head ].concat(tail) }
+program = head:statement EOL+ tail:program { return [ head ].concat(tail) }
         / item:statement { return [ item ] }
 
 statement = output / return
@@ -21,5 +21,7 @@ primary = number
 
 number = digits:$[0-9]+ { return new  Syntax.NumberNode(parseInt(digits)) }
 
-_ = [ \t]*
-EOL = '\r'? '\n'
+whitespace  = [ \t]
+comment     = '[' [^\]]* ']'
+_           = (whitespace / comment)*
+EOL = _ '\r'? '\n'
