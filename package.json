@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "npm run build & jest",
-    "build": "tsc --alwaysStrict syntax.ts & pegjs parser.peg & tsc --alwaysStrict interpreter.ts",
+    "build": "tsc --strict syntax.ts & pegjs parser.peg & tsc --strict interpreter.ts",
     "start": "npm run build & node interpreter.js program.rock"
   },
   "author": "Dylan Beattie",

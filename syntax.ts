@@ -1,12 +1,20 @@
 export class Environment {
     output(arg: any) { }
-    constructor(output) {
+    constructor(output: (arg: any) => void) {
         this.output = output;
     }
 }
 
 export abstract class LanguageNode {
     abstract evaluate(env: Environment): Result;
+}
+
+export interface ParseError {
+    message: string;
+    expected: string;
+    found: string;
+    location: string
+    name: string;
 }
 
 export enum Action {
