@@ -3,15 +3,25 @@
 program = head:statement EOL+ tail:program { return [ head ].concat(tail) }
         / item:statement { return [ item ] }
 
-statement = output / return
+statement = output
+say = ('say'i / 'shout'i / 'whisper'i / 'scream'i);
 
-output = 'output' _ node:expression { return new Syntax.OutputNode(node) }
-return = 'return' _ node:expression { return new Syntax.ReturnNode(node) }
+output = say _ node:expression { return new Syntax.OutputNode(node) }
 
-expression = sum
+expression = number
+
+number = digits:$[0-9]+ { return new  Syntax.NumberNode(parseInt(digits)) }
+
+whitespace  = [ \t]
+comment     = '(' [^)]* ')'
+_           = (whitespace / comment)+
+EOL = _ '\r'? '\n'
+
+/*
+// return = 'return' _ node:expression { return new Syntax.ReturnNode(node) }
 
 sum = lhs:product _ "+" _ rhs:sum { return new Syntax.AdditionNode(lhs, rhs) }
-    / product
+     / product
 
 product = lhs:primary _ "*" _ rhs:product { return new  Syntax.MultiplicationNode(lhs, rhs) }
         / primary
@@ -19,9 +29,4 @@ product = lhs:primary _ "*" _ rhs:product { return new  Syntax.MultiplicationNod
 primary = number
         / "(" expr:expression ")" { return expr; }
 
-number = digits:$[0-9]+ { return new  Syntax.NumberNode(parseInt(digits)) }
-
-whitespace  = [ \t]
-comment     = '[' [^\]]* ']'
-_           = (whitespace / comment)*
-EOL = _ '\r'? '\n'
+*/

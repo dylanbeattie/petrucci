@@ -31,27 +31,27 @@ export class Result {
     }
 }
 
-export abstract class BinaryNode implements LanguageNode {
-    abstract evaluate(env: Environment): Result;
-    lhs: LanguageNode;
-    rhs: LanguageNode;
-    constructor(lhs: LanguageNode, rhs: LanguageNode) {
-        this.lhs = lhs;
-        this.rhs = rhs;
-    }
-}
+// export abstract class BinaryNode implements LanguageNode {
+//     abstract evaluate(env: Environment): Result;
+//     lhs: LanguageNode;
+//     rhs: LanguageNode;
+//     constructor(lhs: LanguageNode, rhs: LanguageNode) {
+//         this.lhs = lhs;
+//         this.rhs = rhs;
+//     }
+// }
 
-export class AdditionNode extends BinaryNode {
-    evaluate(env: Environment) {
-        return new Result(this.lhs.evaluate(env).value + this.rhs.evaluate(env).value);
-    }
-}
+// export class AdditionNode extends BinaryNode {
+//     evaluate(env: Environment) {
+//         return new Result(this.lhs.evaluate(env).value + this.rhs.evaluate(env).value);
+//     }
+// }
 
-export class MultiplicationNode extends BinaryNode {
-    evaluate(env: Environment) {        
-        return new Result(this.lhs.evaluate(env).value * this.rhs.evaluate(env).value);
-    }
-}
+// export class MultiplicationNode extends BinaryNode {
+//     evaluate(env: Environment) {        
+//         return new Result(this.lhs.evaluate(env).value * this.rhs.evaluate(env).value);
+//     }
+// }
 
 export class NumberNode extends LanguageNode {
     value: Number;
@@ -75,14 +75,14 @@ export class OutputNode extends LanguageNode {
     }
 }
 
-export class ReturnNode extends LanguageNode {
-    node: LanguageNode;
-    constructor(node: LanguageNode) {
-        super();
-        this.node = node;
-    }
-    evaluate(env: Environment) {   
-        let value = this.node.evaluate(env).value;
-        return new Result(value, Action.Return);
-    }
-}
+// export class ReturnNode extends LanguageNode {
+//     node: LanguageNode;
+//     constructor(node: LanguageNode) {
+//         super();
+//         this.node = node;
+//     }
+//     evaluate(env: Environment) {   
+//         let value = this.node.evaluate(env).value;
+//         return new Result(value, Action.Return);
+//     }
+// }

@@ -2,15 +2,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { Rockstar } from './interpreter';
 
-// test('it works', () => {
-//     expect(1).toBe(1);
-// });
-
-// const FIXTURES_PATH = './tests/fixtures';
-
 testDirectory('./tests/');
 function testDirectory(directory: string) {
     fs.readdirSync(directory).forEach(path_string => {
+        if (path_string == "v1") return;
         path_string = path.join(directory, path_string);
         let stat = fs.lstatSync(path_string);
         if (stat.isDirectory()) {
@@ -47,8 +42,8 @@ function identifyExpectations(programPath: string) {
         let program = fs.readFileSync(programPath, "utf8");
         let lines = program.split(/\r?\n/g);
         let expected = lines
-            .filter(line => /\[expect:.*\]/.test(line))
-            .map(line => line.replace(/^.*\[expect:([^\]]*)\].*/, "$1"))
+            .filter(line => /\(expect:.*\)/.test(line))
+            .map(line => line.replace(/^.*\(expect:([^\)]*)\).*/, "$1"))
             .join('\n');
         return (expected);
     }
